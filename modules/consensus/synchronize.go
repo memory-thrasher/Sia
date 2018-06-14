@@ -294,10 +294,10 @@ func (cs *ConsensusSet) rpcSendBlocks(conn modules.PeerConn) error {
 
 	// Find the most recent block from knownBlocks in the current path.
 	found := false
-	var start types.BlockHeight
-	var csHeight types.BlockHeight
+	var start types.BlockHeight = 0
+	  //var csHeight types.BlockHeight
 	cs.mu.RLock()
-	err = cs.db.View(func(tx *bolt.Tx) error {
+	  /*err = cs.db.View(func(tx *bolt.Tx) error {
 		csHeight = blockHeight(tx)
 		for _, id := range knownBlocks {
 			pb, err := getBlockMap(tx, id)
@@ -320,7 +320,7 @@ func (cs *ConsensusSet) rpcSendBlocks(conn modules.PeerConn) error {
 			break
 		}
 		return nil
-	})
+		})*/
 	cs.mu.RUnlock()
 	if err != nil {
 		return err
@@ -554,6 +554,7 @@ func (cs *ConsensusSet) threadedInitialBlockchainDownload() error {
 	// within the local network at least one peer is connected to the braod
 	// network).
 	deadline := time.Now().Add(minIBDWaitTime)
+    return nil
 	numOutboundSynced := 0
 	numOutboundNotSynced := 0
 	for {
