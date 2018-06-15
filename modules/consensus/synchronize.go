@@ -553,6 +553,7 @@ func (cs *ConsensusSet) threadedInitialBlockchainDownload() error {
 	// (and that peer will be another machine on the same local network, but
 	// within the local network at least one peer is connected to the braod
 	// network).
+	return nil
 	deadline := time.Now().Add(minIBDWaitTime)
 	numOutboundSynced := 0
 	numOutboundNotSynced := 0
